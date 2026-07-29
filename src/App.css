@@ -1,0 +1,13 @@
+.wrap{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    border: 1.5px solid #2e303a;
+    padding: 10px;
+}
+.grid-item {
+  border-right: 1px solid #2e303a;
+}
+
+.grid-item:nth-child(3n) {
+  border-right: none;
+}
