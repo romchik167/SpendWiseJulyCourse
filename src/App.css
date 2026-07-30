@@ -11,3 +11,6 @@
 .grid-item:nth-child(3n) {
   border-right: none;
 }
+.container, body, html, .wrap{
+  height: 100%;
+}
