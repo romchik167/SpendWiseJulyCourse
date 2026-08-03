@@ -2,13 +2,13 @@
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     border: 1.5px solid #2e303a;
-    padding: 10px;
 }
-.grid-item {
+.grid-item-app {
   border-right: 1px solid #2e303a;
+  padding: 10px;
 }
 
-.grid-item:nth-child(3n) {
+.grid-item-app:nth-child(3n) {
   border-right: none;
 }
 .container, body, html, .wrap{

@@ -11,17 +11,17 @@ function App() {
     <BrowserRouter>
       <div className="container">
         <div className="wrap">
-          <div className="grid-item">
+          <div className="grid-item-app">
             <Navigation />
           </div>
-          <div className="grid-item">
+          <div className="grid-item-app">
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/walletPage" element={<WalletPage />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </div>
-          <div className="grid-item">
+          <div className="grid-item-app">
             <BalanceSection />
           </div>
         </div>

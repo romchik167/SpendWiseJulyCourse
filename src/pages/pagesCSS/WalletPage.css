@@ -1,5 +1,40 @@
-.walletPage-wrap{
+.walletPage-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "add-spend categories-section"
+    "last-spends-section last-spends-section";
+  gap: 1rem;
+  height: 100%;
+}
+.add-spend-section{
+    grid-area: add-spend;
+}
+.categories-section{
+    grid-area: categories-section;
     display: flex;
+
     flex-direction: column;
-    gap: 20px
+    justify-content: center;
+    align-items: center;  
+    gap: 10px;
+}
+.last-spends-section{
+    grid-area: last-spends-section;
+}
+.grid-item-wallet-page{
+    border: 1px solid #2e303a;
+    border-radius: 25px;
+    padding: 10px;
+}
+.categories-list{
+    display: flex;    
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    justify-content: space-between;
+    width: 100%;
+}
+.button-add-category{
+    padding: 15px;
 }
