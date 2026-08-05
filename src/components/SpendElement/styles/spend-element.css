@@ -1,0 +1,20 @@
+.spend-element-wrap{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border: 1px solid #2e303a;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.spend-element-income{
+    background-color: #059669;
+    color: #ffffff;
+}
+.spend-element-expence{
+    background-color: #F87171;
+    color: #ffffff;
+}
+.button-spend-element{
+    color: #ffffff;
+}

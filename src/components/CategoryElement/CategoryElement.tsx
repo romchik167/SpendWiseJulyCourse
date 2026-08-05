@@ -1,4 +1,4 @@
-import "./componentsCSS/CategoryElement.css"
+import "./styles/category-element.css"
 type CategoryElementProps = {
   name: string;
   description: string;

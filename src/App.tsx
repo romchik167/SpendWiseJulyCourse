@@ -1,10 +1,10 @@
 import "./App.css";
-import BalanceSection from "./components/BalanceSection";
-import MainPage from "./pages/MainPage";
-import Navigation from "./components/Navigation";
+import BalanceSection from "./components/BalanceSection/BalanceSection"
+import MainPage from "./pages/MainPage/MainPage";
+import Navigation from "./components/NavigationSection/NavigationSection";
 import { BrowserRouter, Route, Routes } from "react-router";
-import WalletPage from "./pages/WalletPage";
-import ErrorPage from "./pages/ErrorPage";
+import WalletPage from "./pages/WalletPage/WalletPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 function App() {
   return (

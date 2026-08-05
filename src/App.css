@@ -1,7 +1,7 @@
 .wrap{
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    border: 1.5px solid #2e303a;
+    
 }
 .grid-item-app {
   border-right: 1px solid #2e303a;

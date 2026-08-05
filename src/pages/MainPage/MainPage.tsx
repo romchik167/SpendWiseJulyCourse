@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import "./pagesCSS/MainPage.css";
+import "./styles/main-page.css";
 export default function MainPage() {
   return (
     <div className="Main-wrap">

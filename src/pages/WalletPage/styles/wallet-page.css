@@ -14,11 +14,12 @@
 .categories-section{
     grid-area: categories-section;
     display: flex;
-
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;  
-    gap: 10px;
+    gap: 20px;
+    max-height: 500px;
+    overflow-y: auto;
 }
 .last-spends-section{
     grid-area: last-spends-section;
@@ -34,7 +35,14 @@
     flex-shrink: 0;
     justify-content: space-between;
     width: 100%;
+    gap: 15px;
 }
 .button-add-category{
     padding: 15px;
+}
+.last-spends-list{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
