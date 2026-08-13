@@ -5,6 +5,8 @@ import Navigation from "./components/NavigationSection/NavigationSection";
 import { BrowserRouter, Route, Routes } from "react-router";
 import WalletPage from "./pages/WalletPage/WalletPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import LoginForm from "./pages/LoginPage/LoginForm";
+import RegisterForm from "./pages/LoginPage/RegisterForm";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/walletPage" element={<WalletPage />} />
+              <Route path="/loginForm" element={<LoginForm />} />
+              <Route path="/registerForm" element={<RegisterForm />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </div>
