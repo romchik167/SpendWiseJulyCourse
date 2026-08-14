@@ -1,17 +1,22 @@
 import React from "react";
-import TextField from "./TextField";
+import TextField from "../../../components/TextField/TextField";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import "./styles/register-form.css"
+//import { z } from "zod";
 
 type Inputs = {
   login: string;
   password: string;
+  passwordRepeat: string;
 };
 
-export default function LoginForm() {
+export default function RegisterForm() {
+  // const schema = z.object({
+
+  // })
   const pageStyle: React.CSSProperties = {
     minHeight: "100vh",
     width: "100%",
-    background: "#4F3FF0",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -47,7 +52,6 @@ export default function LoginForm() {
     margin: 0,
   };
 
-
   const buttonStyle: React.CSSProperties = {
     width: "100%",
     display: "flex",
@@ -65,13 +69,24 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
+    setError,
     // watch,
-    //formState: { errors },
+    formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-  // const { onChange, onBlur, ref } = { ...register("ROMAN") };
-  // console.log({ ...register("ROMAN") });
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const { password, passwordRepeat } = data;
+    if (password === passwordRepeat) {
+      console.log(data);
+    } else {
+      setError("password", {
+        message: "Passwords must be identical",
+      });
 
+      setError("passwordRepeat", {
+        message: "Passwords must be identical",
+      });
+    }
+  };
   return (
     <div style={pageStyle}>
       <div style={cardStyle}>
@@ -81,7 +96,7 @@ export default function LoginForm() {
             <circle cx="12" cy="8" r="4" />
             <path d="M4 20c0-4.418 3.582-7 8-7s8 2.582 8 7v1H4v-1z" />
           </svg>
-          <h1 style={titleStyle}>Login</h1>
+          <h1 style={titleStyle}>Register</h1>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -97,7 +112,15 @@ export default function LoginForm() {
             placeholder="Enter Password..."
             {...register("password")}
           />
+          {errors.password && <p>{errors.password.message}</p>}
+          <TextField
+            label="Password"
+            type="password"
+            placeholder="Enter Password..."
+            {...register("passwordRepeat")}
+          />
 
+          {errors.passwordRepeat && <p>{errors.passwordRepeat.message}</p>}
           <button type="submit" style={buttonStyle}>
             {/* login/arrow icon */}
             <svg

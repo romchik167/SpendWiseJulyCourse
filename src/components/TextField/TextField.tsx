@@ -1,11 +1,11 @@
-import type { ChangeHandler, RefCallBack} from "react-hook-form";
+import type { ChangeHandler, RefCallBack } from "react-hook-form";
 
 export interface TextFieldProps {
   label: string;
   type?: "text" | "password" | "email";
   placeholder?: string;
-  onChange: ChangeHandler;
   name: string;
+  onChange: ChangeHandler;
   onBlur: ChangeHandler;
   ref: RefCallBack;
 }
@@ -19,7 +19,6 @@ export default function TextField({
   onBlur,
   ref,
 }: TextFieldProps) {
-
   const wrapperStyle: React.CSSProperties = {
     marginBottom: 20,
   };
