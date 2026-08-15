@@ -1,19 +1,11 @@
 import React from "react";
 import TextField from "../../../components/TextField/TextField";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import "./styles/register-form.css"
-//import { z } from "zod";
-
-type Inputs = {
-  login: string;
-  password: string;
-  passwordRepeat: string;
-};
+import { useForm } from "react-hook-form";
+import "./styles/register-form.css";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function RegisterForm() {
-  // const schema = z.object({
-
-  // })
   const pageStyle: React.CSSProperties = {
     minHeight: "100vh",
     width: "100%",
@@ -66,26 +58,37 @@ export default function RegisterForm() {
     borderRadius: 8,
     transition: "background 0.15s ease",
   };
-  const {
-    register,
-    handleSubmit,
-    setError,
-    // watch,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const { password, passwordRepeat } = data;
-    if (password === passwordRepeat) {
-      console.log(data);
-    } else {
-      setError("password", {
-        message: "Passwords must be identical",
-      });
+  const schema = z
+    .object({
+      login: z.string().min(2).max(20),
+      password: z
+        .string()
+        .min(5, "min lenght is 5")
+        .max(20, "max lenght is 20"),
+      confirmPassword: z
+        .string()
+        .min(5, "min lenght is 5")
+        .max(20, "max lenght is 20"),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: "password do not match",
+      path: ["confirmPassword"],
+    });
+  type Inputs = z.infer<typeof schema>;
 
-      setError("passwordRepeat", {
-        message: "Passwords must be identical",
-      });
-    }
+  const { register, handleSubmit, reset } = useForm<Inputs>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      login: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+
+  const submitData = (data: Inputs) => {
+    console.log("New user:", data);
+
+    reset();
   };
   return (
     <div style={pageStyle}>
@@ -99,7 +102,7 @@ export default function RegisterForm() {
           <h1 style={titleStyle}>Register</h1>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(submitData)}>
           <TextField
             label="Username"
             placeholder="Enter Username..."
@@ -112,15 +115,12 @@ export default function RegisterForm() {
             placeholder="Enter Password..."
             {...register("password")}
           />
-          {errors.password && <p>{errors.password.message}</p>}
           <TextField
             label="Password"
             type="password"
             placeholder="Enter Password..."
-            {...register("passwordRepeat")}
+            {...register("confirmPassword")}
           />
-
-          {errors.passwordRepeat && <p>{errors.passwordRepeat.message}</p>}
           <button type="submit" style={buttonStyle}>
             {/* login/arrow icon */}
             <svg

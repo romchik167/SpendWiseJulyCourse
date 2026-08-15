@@ -1,13 +1,13 @@
 import React from "react";
 import TextField from "../../../components/TextField/TextField";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import "./styles/login-form.css"
-type Inputs = {
-  login: string;
-  password: string;
-};
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 
 export default function LoginForm() {
+
   const pageStyle: React.CSSProperties = {
     minHeight: "100vh",
     width: "100%",
@@ -60,8 +60,28 @@ export default function LoginForm() {
     borderRadius: 8,
     transition: "background 0.15s ease",
   };
-  const { register, handleSubmit } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const schema = z.object({
+  login: z.string().min(2).max(20),
+      password: z
+        .string()
+        .min(5, "min lenght is 5")
+        .max(20, "max lenght is 20"),
+})
+type Inputs = z.infer<typeof schema>;
+
+
+  const { register, handleSubmit, reset } = useForm<Inputs>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      login: '',
+      password: '',
+    }
+  });
+
+  const onSubmit = (data: Inputs) =>{
+    console.log("user login is:", data);
+    reset()
+  } 
   return (
     <div style={pageStyle}>
       <div style={cardStyle}>
